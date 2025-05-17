@@ -93,11 +93,11 @@ def onStep():
             for oval in ovals:
                 oval.update()
 
-    if not app.little_ovals_top or app.little_ovals_top[-1].shape.centerX > 30:
+    if not app.little_ovals_top or app.little_ovals_top[-1].shape.centerX > 0:
         little_top = Deadly_oval(30, -30, 0, 30)
         app.little_ovals_top.append(little_top)
 
-    if not app.little_ovals_bottom or app.little_ovals_bottom[-1].shape.centerX > 30:
+    if not app.little_ovals_bottom or app.little_ovals_bottom[-1].shape.centerX > 0:
         little_bottom = Deadly_oval(30, -30, 400, 30)
         app.little_ovals_bottom.append(little_bottom)
 
