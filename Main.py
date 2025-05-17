@@ -114,8 +114,8 @@ def onStep():
 def gameOver():
     hide_game()
     app.background = rgb(119, 242, 135)
-    Label('Game Over!', 200, 175, size=20, bold=True)
-    Label(f'Score: {app.score}', 200, 225, size=20, bold=True)
+    app.game_over_text = Label('Game Over!', 200, 175, size=20, bold=True)
+    app.score_text = Label(f'Score: {app.score}', 200, 225, size=20, bold=True)
     app.on = False
     app.gameOver = True
 
@@ -145,14 +145,16 @@ def onKeyPress(key):
         app.time = 0
         app.difficulty = 1
         app.background = rgb(220, 220, 240)
+        app.game_over_text.visible = False
+        app.score_text.visible = False
         app.gameOver = False
 
     app.on = True
-    title.visible = False
-    indicator.visible = False
+    app.title_text.visible = False
+    app.info_text.visible = False
 
 
-title = Label('DEADLY OVALS', 200, 175, size=20, bold=True)
-indicator = Label('PRESS ANY KEY TO BEGIN...', 200, 200, size=20, bold=True)
+app.title_text = Label('DEADLY OVALS', 200, 175, size=20, bold=True)
+app.info_text = Label('PRESS ANY KEY TO BEGIN...', 200, 200, size=20, bold=True)
 
 cmu_graphics.run()
