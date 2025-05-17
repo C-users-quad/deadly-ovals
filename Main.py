@@ -12,6 +12,7 @@ app.little_ovals_bottom = []
 app.all_ovals = []
 app.cursor = Circle(400, 400, 1, visible=False)
 app.on = False
+app.gameOver = False
 
 app.score = 0
 app.time = 0
@@ -116,21 +117,36 @@ def gameOver():
     Label('Game Over!', 200, 175, size=20, bold=True)
     Label(f'Score: {app.score}', 200, 225, size=20, bold=True)
     app.on = False
+    app.gameOver = True
 
 
 def hide_game():
     for oval in app.all_ovals:
         oval.shape.fill = None
 
+def onMouseLeave():
+    gameOver()
 
 def onMouseMove(mouseX, mouseY):
     app.cursor.centerX = mouseX
     app.cursor.centerY = mouseY
 
-
 def onKeyPress(key):
     if app.on:
         return
+    if app.gameOver:
+        # revert variable values
+        app.deadly_ovals_top.clear()
+        app.deadly_ovals_bottom.clear()
+        app.little_ovals_top.clear()
+        app.little_ovals_bottom.clear()
+        app.all_ovals.clear()
+        app.score = 0
+        app.time = 0
+        app.difficulty = 1
+        app.background = rgb(220, 220, 240)
+        app.gameOver = False
+
     app.on = True
     title.visible = False
     indicator.visible = False
@@ -139,4 +155,4 @@ def onKeyPress(key):
 title = Label('DEADLY OVALS', 200, 175, size=20, bold=True)
 indicator = Label('PRESS ANY KEY TO BEGIN...', 200, 200, size=20, bold=True)
 
-app.run()
+cmu_graphics.run()
